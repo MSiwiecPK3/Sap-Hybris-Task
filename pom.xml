@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-rest-service</artifactId>
+    <groupId>wildfly.rest.app</groupId>
+    <artifactId>rest.app</artifactId>
     <version>0.1.0</version>
     <name>MovieManager</name>
     <packaging>jar</packaging>
@@ -21,60 +21,55 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
-	<dependency>
+		<dependency>
     		<groupId>com.google.code.gson</groupId>
     		<artifactId>gson</artifactId>
-    		<version>2.2.4</version>
-	</dependency>
+    		</dependency>
         <dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
-			<version>1.5.2.RELEASE</version>
-			</dependency>
-		
+		</dependency>		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		
+		</dependency>		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
-
-		<!-- mongodb java driver -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>3.4.2</version>
 		</dependency>
-		
-		<!-- Spring data mongodb -->
-
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
 		<dependency>
-    			<groupId>javax.ws.rs</groupId>
-    			<artifactId>javax.ws.rs-api</artifactId>
-    			<version>2.1-m07</version>
+    		<groupId>org.jboss.resteasy</groupId>
+    		<artifactId>jaxrs-api</artifactId>
+    		<version>3.0.12.Final</version>
 		</dependency>
-        
+		<dependency>
+  			<groupId>org.wildfly.swarm</groupId>
+  			<artifactId>jaxrs</artifactId>
+  			<version>2017.6.0</version>
+		</dependency>		
+        <dependency>
+      		<groupId>org.wildfly.swarm</groupId>
+      		<artifactId>bom</artifactId>
+      		<version>2017.6.0</version>
+      		<type>pom</type>
+    	</dependency>
     </dependencies>
 
     <properties>
@@ -84,6 +79,39 @@
 
     <build>
         <plugins>
+        <plugin>
+   			<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-dependency-plugin</artifactId>
+    		<version>2.3</version>
+    		<executions>
+        		<execution>
+           			<phase>package</phase>
+            		<goals><goal>copy</goal></goals>
+            		<configuration>
+                		<artifactItems>
+                    		<artifactItem>
+                        		<groupId>org.eclipse.jetty</groupId>
+                        		<artifactId>jetty-runner</artifactId>
+                        		<version>9.2.7.v20150116</version>
+                        		<destFileName>jetty-runner.jar</destFileName>
+                    		</artifactItem>
+                		</artifactItems>
+            		</configuration>
+        		</execution>
+    		</executions>
+		</plugin>
+		<plugin>
+ 			<groupId>org.wildfly.swarm</groupId>
+  			<artifactId>wildfly-swarm-plugin</artifactId>
+  			<version>2017.6.0</version>
+  			<executions>
+    			<execution>
+      				<goals>
+        				<goal>package</goal>
+      				</goals>
+    			</execution>
+  			</executions>
+		</plugin>		
         </plugins>
     </build>
     <repositories>
@@ -93,5 +121,4 @@
         		<url>file:${project.basedir}/repo</url>
     		</repository>
 		</repositories>
-  
 </project>

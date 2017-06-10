@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/MovieManager.war
+web: java -Dswarm.http.port=8080 -jar target/rest.app-0.1.0-swarm.jar
