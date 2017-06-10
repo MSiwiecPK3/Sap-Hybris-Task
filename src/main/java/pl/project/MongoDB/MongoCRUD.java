@@ -21,7 +21,7 @@ public class MongoCRUD  {
 	SpringMongoConfig config;
 	GsonBuilder builder = new GsonBuilder();
 	Gson gson = builder.create();
-	MongoDatabase db;
+	MongoDatabase db;  
 	
 	@SuppressWarnings("unchecked")
 	public List<Movie> getAllMovies() {
@@ -57,11 +57,11 @@ public class MongoCRUD  {
 		return movie;
 	}
 
-	public String updateMovie(Movie movie) {
+	public String updateMovie(String id, Movie movie) {
 		db = config.connect();
 		MongoCollection<Document> collection = db.getCollection("movies");
 		BasicDBObject whereQuery = new BasicDBObject();
-		whereQuery.put("_id", movie.getId());
+		whereQuery.put("_id",id);
 		UpdateResult result = collection.updateOne(whereQuery, Document.parse(gson.toJson(movie)));
 		config.close();
 		if (result.wasAcknowledged())
@@ -147,11 +147,11 @@ public class MongoCRUD  {
 		return user;
 	}
 
-	public String updateUser(User user) {
+	public String updateUser(String id, User user) {
 		db = config.connect();
 		MongoCollection<Document> collection = db.getCollection("users");
 		BasicDBObject whereQuery = new BasicDBObject();
-		whereQuery.put("_id", user.getId());
+		whereQuery.put("_id", id);
 		UpdateResult result = collection.updateOne(whereQuery, Document.parse(gson.toJson(user)));
 		config.close();
 		if (result.wasAcknowledged())

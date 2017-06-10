@@ -2,18 +2,21 @@ package pl.project.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Document(collection = "movies")
 public class Movie implements Serializable {
 	
 
 	private static final long serialVersionUID = 1L;
 	@Id
+	@XmlAttribute
 	private String id;
 	private String Title;
 	private double rating;

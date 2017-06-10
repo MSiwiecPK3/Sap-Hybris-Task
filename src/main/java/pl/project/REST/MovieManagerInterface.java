@@ -1,11 +1,11 @@
 package pl.project.REST;
 
-import java.util.List;
 import pl.project.model.Movie;
+import pl.project.model.SetResponse;
 import pl.project.model.User;
 
 public interface MovieManagerInterface {
-	public List<Movie> getAllMovies();
+	public SetResponse<Movie> getAllMovies();
 
 	public void saveMovie(Movie movie);
 
@@ -15,13 +15,13 @@ public interface MovieManagerInterface {
 
 	public String deleteMovie(String id);
 	
-	public List<User> getAllUsers();
+	public SetResponse<User> getAllUsers();
 
 	public void saveUser(User user);
 
 	public User getUser(String id);
 
-	public String updateUser(User user);
+	public String updateUser(String id, User user);
 
 	public String deleteUser(String id);
 
