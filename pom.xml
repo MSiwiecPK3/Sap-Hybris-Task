@@ -4,9 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>wildfly.rest.app</groupId>
-    <artifactId>rest.app</artifactId>
-    <version>0.1.0</version>
-    <name>MovieManager</name>
+    <artifactId>MovieManager</artifactId>
+    <name>moviemanager</name>
     <packaging>war</packaging>
 
     <parent>
@@ -111,7 +110,14 @@
       				</goals>
     			</execution>
   			</executions>
-		</plugin>		
+		</plugin>
+		    <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webXml>WebContent\WEB-INF\web.xml</webXml>
+                </configuration>
+            </plugin>		
         </plugins>
     </build>
     <repositories>

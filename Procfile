@@ -1,1 +1,1 @@
-web: java -Dswarm.http.port=8080 -jar target/rest.app-0.1.0.war
+web: java -jar target/dependency/jetty-runner.jar target/MovieManager-1.5.2.RELEASE.war
