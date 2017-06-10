@@ -1,17 +1,18 @@
 package pl.project.model;
 
+import java.io.Serializable;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
-public class User {
+public class User implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	private String id;
-
-	String username;
-
-	String password;
+	private String username;
+	private String password;
 
 	public String getId() {
 		return id;
@@ -41,11 +42,6 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 
 }

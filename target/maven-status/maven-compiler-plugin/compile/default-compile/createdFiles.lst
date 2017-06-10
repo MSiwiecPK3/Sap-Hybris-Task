@@ -1,4 +1,8 @@
+pl\project\REST\MovieManagerREST.class
+pl\project\MongoDB\MongoCRUD.class
+pl\project\MongoDB\SpringMongoConfig.class
+pl\project\model\Category.class
 pl\project\model\Movie.class
 pl\project\model\User.class
-pl\project\config\SpringMongoConfig.class
 pl\project\model\Application.class
+pl\project\REST\MovieManagerInterface.class
