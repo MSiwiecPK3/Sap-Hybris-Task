@@ -15,11 +15,14 @@ import pl.project.model.SetResponse;
 import pl.project.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-@Path("/moviemanager")
+
+@ApplicationPath("rest")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
-public class MovieManagerREST implements MovieManagerInterface{
+public class MovieManagerREST extends Application implements MovieManagerInterface {
 	
 	MongoCRUD mongo;
 	GsonBuilder builder = new GsonBuilder();
@@ -72,7 +75,7 @@ public class MovieManagerREST implements MovieManagerInterface{
 
 	@Override
 	@GET
-	@Path("/login")
+	@Path("/user")
 	public SetResponse<User> getAllUsers() {
 		mongo.createUsersCollection();
 		List<User> list = mongo.getAllUsers();
@@ -82,7 +85,7 @@ public class MovieManagerREST implements MovieManagerInterface{
 
 	@Override
 	@POST
-	@Path("/movie")
+	@Path("/user")
 	public void saveUser(User user) {
 		mongo.createUsersCollection();
 		mongo.saveUser(user);
@@ -91,7 +94,7 @@ public class MovieManagerREST implements MovieManagerInterface{
 
 	@Override
 	@GET
-	@Path("/movie/{idu}")
+	@Path("/user/{idu}")
 	public User getUser(@PathParam("idu") String idu) {
 		mongo.createUsersCollection();
 		User user = mongo.getUser(idu);
@@ -100,7 +103,7 @@ public class MovieManagerREST implements MovieManagerInterface{
 
 	@Override
 	@PUT
-	@Path("/movie/{idu}")
+	@Path("/user/{idu}")
 	public String updateUser(@PathParam("idu") String idu, User user) {
 		mongo.createUsersCollection();
 		String response = mongo.updateUser(idu, user);
@@ -109,7 +112,7 @@ public class MovieManagerREST implements MovieManagerInterface{
 
 	@Override
 	@DELETE
-	@Path("/movie/{idu}")
+	@Path("/user/{idu}")
 	public String deleteUser(@PathParam("idu") String idu) {
 		mongo.createUsersCollection();
 		String response = mongo.deleteUser(idu);
