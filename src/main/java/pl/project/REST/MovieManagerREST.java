@@ -15,14 +15,15 @@ import pl.project.model.SetResponse;
 import pl.project.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
+//import javax.ws.rs.ApplicationPath;
+//import javax.ws.rs.core.Application;
 
-
-@ApplicationPath("rest")
+@Path("/app")
+//@ApplicationPath("/rest/*")
 @Consumes({ "application/json" })
 @Produces({ "application/json" })
-public class MovieManagerREST extends Application implements MovieManagerInterface {
+public class MovieManagerREST implements MovieManagerInterface {
+	
 	
 	MongoCRUD mongo;
 	GsonBuilder builder = new GsonBuilder();
